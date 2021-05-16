@@ -6,6 +6,8 @@ const flash = require('connect-flash');
 const session = require('express-session');
 const passport = require('./config/ppConfig');
 const isLoggedIn = require('./middleware/isLoggedIn');
+const db = require('./models')
+
 
 const SECRET_SESSION = process.env.SECRET_SESSION;
 
@@ -64,6 +66,8 @@ app.get('/profile', isLoggedIn, (req, res) => {
 
 
 app.use('/auth', require('./controllers/auth'));
+app.use('/songs', require('./controllers/songs'));
+
 
 const PORT = process.env.PORT || 8000;
 const server = app.listen(PORT, () => {
